@@ -41,10 +41,10 @@ CWSC.prototype.sendMessage = function(msg) {
 CWSC.prototype.connect = function(uri) {
     this._ws = new WebSocket(uri);
     
-    this._ws.addEventListener("open", this.onOpen};
-    this._ws.addEventListener("close", this.onClose};
-    this._ws.addEventListener("message", this.onMessage};
-    this._ws.addEventListener("error", this.onError};
+    this._ws.addEventListener("open", this.onOpen);
+    this._ws.addEventListener("close", this.onClose);
+    this._ws.addEventListener("message", this.onMessage);
+    this._ws.addEventListener("error", this.onError);
 }
 CWSC.prototype.disconnect = function() {
     this._ws.close();
