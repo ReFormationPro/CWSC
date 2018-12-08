@@ -1,18 +1,26 @@
-const CWSC = function(uri, maxAttempts) {
+const CWSC = function(uri, maxAttempts, {onOpen = () => {}, onMessage = () => {}, onClose = () => {}}) {
     this.maxAttempts = maxAttempts || 1;
     this._attempted = 0;
     this._uri = uri;
+    
+    this.onUserOpen = onOpen;
+    this.onUserMessage = onMessage;
+    this.onUserClose = onClose;
+    
     this.connect(uri);
 }
 //Listeners, don't touch
 CWSC.prototype.onOpen = function(evt) {
     console.debug("onOpen", evt);
+    this.onUserOpen(evt);
 }
 CWSC.prototype.onClose = function(evt) {
     console.debug("onClose", evt);
+    this.onUserClose(evt);
 }
 CWSC.prototype.onMessage = function(evt) {
     console.debug("onMessage", evt);
+    this.onUserMessage(evt);
 }
 CWSC.prototype.onError = function(evt) {
     console.debug("onError", evt);
